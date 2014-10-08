@@ -1,50 +1,9 @@
----
-title: "WRI-GFW Blog"
-author: "Morgan Levy"
-date: "October 7, 2014"
-output:
-  html_document:
-    keep_md: yes
----
+# WRI-GFW Blog
+Morgan Levy  
+October 7, 2014  
 
 
-```{r, chunksetup, include=FALSE}
 
-###########################################################################
-#### Set Up ####
-###########################################################################
-
-rm(list= ls());
-
-library(sp)
-library(rgdal)
-library(maptools)
-library(geosphere)
-library(rgeos)
-library(reshape2)
-library(ggplot2)
-library(RColorBrewer)
-library(plyr)
-library(lubridate)
-library(leaps)
-library(lfe)
-library(zoo)
-library(xtable)
-library(plotrix)
-
-library(raster)
-library(rasterVis) 
-
-source('/Users/mcl/Dropbox/Brazil/Code/ggplot_funcs.R')
-
-###########################################################################
-#### Load Data ####
-###########################################################################
-
-setwd("/Users/mcl/Dropbox/Brazil/WRI/blog")
-load("blog_data.Rdata")
-
-```
 
 
 # The Forest-Water-Energy Nexus at the Southern Fringe of the Brazilian Amazon
@@ -80,25 +39,14 @@ The synthesis of land use, hydrologic, and hydropower data is not trivial. There
 
 We look at an example river basin located in central Mato Grosso, Brazil: a 10,887 km^2^ headwater basin of the Alto Teles Pires River, a tributary to the Amazon River. Deforestation in this basin occurred prior to 2001, however minimal deforestation continued through 2012, and transitions from pasture to cropland continue today in this region.
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=6, fig.height=2.5, fig.align='center', fig.cap=""}
-
-ggplot(ATPc_forest.loss_2000.2013 ,aes(x=year, y=value, linetype=variable)) + geom_line() + theme_complete_bw(12) + xlab("Year") + ylab("Loss [ha]") + scale_x_continuous(breaks = 2001:2012, labels = as.character(2001:2012)) + theme(legend.title=element_blank(), axis.text.x = element_text(angle = 60, hjust = 1))
-
-```
+<img src="./WRI.GFW.blog_files/figure-html/unnamed-chunk-1.png" title="" alt="" style="display: block; margin: auto;" />
 **Forest Loss in the Alto Teles Pires River Headwater Basin: 2001-2012**
 
 *Data Source: [Hansen/UMD/Google/USGS/NASA, 2013](http://www.earthenginepartners.appspot.com/science-2013-global-forest/download.html) obtained using the [GFW API](http://datalab.wri.org/using-the-gfw-api-update)*
 
 Total cumulative forest loss since 2001 was 5% of total basin area, with a maximum of 1% of the basin deforested in any year. Because we might expect deforestation to impact ET, we look at some hydrologic data over the same period of time:
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8, fig.height=3, fig.align='center', fig.cap=""}
-
-cols <- brewer.pal(8,"Set2")[2:3]
-colScale <- scale_colour_manual(values = cols)
-
-ggplot(ATPc_WBdata_2000.2013, aes(x=date, y=value, colour = type)) + geom_line() + facet_wrap(~variable, scales="free") + theme(legend.title=element_blank()) + xlab("Time") + ylab("Water [cm/month]") + colScale + theme_complete_bw(12) + theme(legend.title=element_blank()) 
-
-```
+<img src="./WRI.GFW.blog_files/figure-html/unnamed-chunk-2.png" title="" alt="" style="display: block; margin: auto;" />
 **Water Balance Components in the Alto Teles Pires River Headwater Basin: 2000-2013**
 
 *Rainfall and ET "Data" are basin- and monthly-averaged, area-normalized values; flow is calculated from rainfall and ET. "Trend" is the locally weighted polynomial regression (loess) trend component of seasonally-decomposed data. Data Source: 3-hour (aggregated to daily), 0.25x0.25 degree Tropical Rainfall Measuring Mission (TRMM) 34B2 gridded rainfall product obtained from [Google Earth Engine](https://earthengine.google.org/#detail/TRMM%2F3B42); and 8-day, 1km Moderate Resolution Imaging Spectroradiometer (MODIS) Global Evapotranspiration [MOD16](http://www.ntsg.umt.edu/project/mod16) gridded ET product.*[^fn-WB2.footnote]
@@ -106,30 +54,22 @@ ggplot(ATPc_WBdata_2000.2013, aes(x=date, y=value, colour = type)) + geom_line()
 Based on theory, modeling, and field-level studies, we expect to see a *decrease* in ET with increased deforestation. However, the basin shows no obvious shift in ET. The figure above made use of gridded rainfall and ET products, which provide great spatial resolution, but are only available beginning in 2000. However, historical rainfall and flow gauge (point-located) data are available for this basin going back to the mid 1970s, which is of interest because deforestation began well before 2001. We look at summary statistics for seasonal flow between 1974-1984 and 1998-2008, assuming these decades capture an approximate pre- and post-deforestation period.
 
 **Wet Season**
-```{r, results='asis', echo=FALSE}
-
-#[cm/month]
-
-x <- subset(ATPc_histdata_1974.2008, type == "Data" & variable == "Flow", drop=T)
-x_st_w <- subset(x, year %in% 1974:1984 & month %in% c(11:12,1:4), drop=T)
-x_st_d <- subset(x, year %in% 1974:1984 & month %in% c(5:10), drop=T)
-x_fin_w <- subset(x, year %in% 1998:2008 & month %in% c(11:12,1:4), drop=T)
-x_fin_d <- subset(x, year %in% 1998:2008 & month %in% c(5:10), drop=T)
-
-
-dfw <- matrix(rbind(c(summary(x_st_w$value), sd(x_st_w$value)), c(summary(x_fin_w$value),sd(x_fin_w$value))), nrow=2, dimnames = list(c("1974-1984", "1998-2008"), c("Minimum", "1st Quantile", "Median","Mean", "3rd Quantile", "Maximum", "Standard Deviation")))
-
-dfd <- matrix(rbind(c(summary(x_st_d$value), sd(x_st_d$value)), c(summary(x_fin_d$value),sd(x_fin_d$value))), nrow=2, dimnames = list(c("1974-1984", "1998-2008"), c("Minimum", "1st Quantile", "Median","Mean", "3rd Quantile", "Maximum", "Standard Deviation")))
-
-print(xtable(dfw), type="html")
-```
+<!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
+<!-- Wed Oct  8 12:03:50 2014 -->
+<TABLE border=1>
+<TR> <TH>  </TH> <TH> Minimum </TH> <TH> 1st Quantile </TH> <TH> Median </TH> <TH> Mean </TH> <TH> 3rd Quantile </TH> <TH> Maximum </TH> <TH> Standard Deviation </TH>  </TR>
+  <TR> <TD align="right"> 1974-1984 </TD> <TD align="right"> 2.97 </TD> <TD align="right"> 7.26 </TD> <TD align="right"> 10.50 </TD> <TD align="right"> 11.40 </TD> <TD align="right"> 14.70 </TD> <TD align="right"> 26.20 </TD> <TD align="right"> 5.52 </TD> </TR>
+  <TR> <TD align="right"> 1998-2008 </TD> <TD align="right"> 2.87 </TD> <TD align="right"> 5.79 </TD> <TD align="right"> 10.00 </TD> <TD align="right"> 10.70 </TD> <TD align="right"> 14.00 </TD> <TD align="right"> 40.00 </TD> <TD align="right"> 6.45 </TD> </TR>
+   </TABLE>
 
 **Dry Season**
-```{r, results='asis', echo=FALSE}
-
-print(xtable(dfd), type="html")
-
-```
+<!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
+<!-- Wed Oct  8 12:03:50 2014 -->
+<TABLE border=1>
+<TR> <TH>  </TH> <TH> Minimum </TH> <TH> 1st Quantile </TH> <TH> Median </TH> <TH> Mean </TH> <TH> 3rd Quantile </TH> <TH> Maximum </TH> <TH> Standard Deviation </TH>  </TR>
+  <TR> <TD align="right"> 1974-1984 </TD> <TD align="right"> 1.02 </TD> <TD align="right"> 1.52 </TD> <TD align="right"> 2.10 </TD> <TD align="right"> 2.30 </TD> <TD align="right"> 2.76 </TD> <TD align="right"> 5.36 </TD> <TD align="right"> 0.98 </TD> </TR>
+  <TR> <TD align="right"> 1998-2008 </TD> <TD align="right"> 0.92 </TD> <TD align="right"> 1.27 </TD> <TD align="right"> 1.57 </TD> <TD align="right"> 1.90 </TD> <TD align="right"> 2.12 </TD> <TD align="right"> 5.54 </TD> <TD align="right"> 0.96 </TD> </TR>
+   </TABLE>
 \ 
 
 *Statistics are computed on area-normalized, daily flow [cm/day] measured at the outlet of the basin. Data Source: [Agência Nacional de Águas (ANA)](http://www.ana.gov.br/PortalSuporte/frmSelecaoEstacao.aspx)*
@@ -160,91 +100,22 @@ Forest loss (obtained using the [GFW API](http://datalab.wri.org/using-the-gfw-a
 
 The table below shows results for the model specification wherein $Flow_{it}$ is mean (monthly) flow.
 
-```{r, echo=FALSE, results='asis', message=FALSE, error=FALSE}
+<!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
+<!-- Wed Oct  8 12:03:52 2014 -->
+<TABLE border=1>
+<TR> <TH>  </TH> <TH> Estimate </TH> <TH> Std. Error </TH> <TH> t value </TH> <TH> Pr(&gt;|t|) </TH>  </TR>
+  <TR> <TD align="right"> log(loss) </TD> <TD align="right"> 0.0010 </TD> <TD align="right"> 0.0112 </TD> <TD align="right"> 0.09 </TD> <TD align="right"> 0.9313 </TD> </TR>
+  <TR> <TD align="right"> log(cumloss) </TD> <TD align="right"> 0.0447 </TD> <TD align="right"> 0.0141 </TD> <TD align="right"> 3.18 </TD> <TD align="right"> 0.0015 </TD> </TR>
+  <TR> <TD align="right"> log(rain.cum) </TD> <TD align="right"> 0.0435 </TD> <TD align="right"> 0.0054 </TD> <TD align="right"> 8.09 </TD> <TD align="right"> 0.0000 </TD> </TR>
+  <TR> <TD align="right"> time </TD> <TD align="right"> -0.0013 </TD> <TD align="right"> 0.0004 </TD> <TD align="right"> -3.39 </TD> <TD align="right"> 0.0007 </TD> </TR>
+   </TABLE>
+p: 85 , N: 5856 , Adjusted R-squared: 0.77
 
-## Format Design Matrix
 
-## dependent variables
-iflow <- grep("flow", names(X)) # flow variable index
-ydf <- X[,iflow]
-
-## independent variables
-
-# individual (basin) characteristics
-iindiv <- c("site", "basin", "order", "area")
-xdf.indiv <- X[,iindiv ]
-
-# time characteristics
-itime <- c("year", "month", "season", "time")
-xdf.time <- X[,itime]
-
-# rain options
-irain <- grep("rain", names(X)) # rain variable index
-xdf.rain <- X[,irain]
-
-# forest loss options
-iloss <- grep("loss", names(X)) # rain variable index
-xdf.loss <-  X[,iloss]
-
-# selected variables, based on model selection (AIC, BIC, R^2)
-irainselect <- which(names(xdf.rain) %in% c("rain.depth.mean", "rain.cum"))
-ilossselect <- which(names(xdf.loss) %in% c("loss", "cumloss"))
-
-## Design Matrix
-XD <- cbind(xdf.time, xdf.rain[,irainselect], xdf.loss[,ilossselect], xdf.indiv)
-
-## Select "y" variable
-# names(ydf)[i]
-
-i = 3 # mean flow (can be 1:7)
-
-# add very small number for logs
-XD$y <- ydf[,i] + 1e-9
-XD$loss <- XD$loss + 1e-9
-XD$cumloss <- XD$cumloss + 1e-9
-
-felm_mean <- felm(log(y) ~ log(loss) + log(cumloss) + log(rain.cum) + time + time^2 + time^3 | month + site | (0), data=XD, exactDOF=TRUE)
-
-print(xtable(summary(felm_mean)), type="html")
-
-cat(paste("p:", felm_mean$p), ",", paste("N:", felm_mean$N), ",", paste("Adjusted R-squared:", round(summary(felm_mean)$r2adj,2) ) )
-
-```
-
-```{r, results='hide', echo=FALSE}
-
-## Interpretation of coefficient on cumulative forest loss
-
-lp <- .1# fraction cumulative forest loss
-fp <- felm_mean$coefficients["log(cumloss)"]*lp
-
-# seasonal historical flow data
-xw <- subset(ATPc_histdata_1974.2008, type == "Data" & variable == "Flow" & month %in% c(11:12,1:4), drop=T)
-
-xd <- subset(ATPc_histdata_1974.2008, type == "Data" & variable == "Flow" & month %in% c(5:10), drop=T)
-
-# mean(xw$value)*0.01 # [cm/month] 
-# mean(xw$value)*0.04/30 # [cm/day] 
-# mean(xw$value)*0.01/(100*30*86400)*(10723.35*10^6) # 4% of mean wet season [m^3/sec]
-# mean(xw$value)/(100*30*86400)*(10723.35*10^6)# mean wet season [m^3/sec]
-
-```
 
 Results are statistically significant for the effect of cumulative forest loss, however the coefficient is small. These results suggests that on average, a 25% increase in cumulative forest loss [ha] in a given year corresponds to a 1\% increase in mean monthly flow; a 90% increase in cumulative forest loss corresponds to a 4\% increase in flow.[^fn-lm.footnote]  To put that in terms of flow rates: a 1\% increase in mean monthly flow in the wet season in the Alto Teles Pires basin is equivalent to an increase in the flow rate by 4.6 m^3^/second; a 4\% increase is equivalent to an increase of 18.2 m^3^/second.
 
-```{r, results='hide', echo=FALSE}
 
-# A 25% increase in cumulative forest loss is not unrealistic. For the ALto Teles Pires basin, this amounts to saying that were the cumulative forest loss in each year 25% higher than observed, on average each year would see an additional 38 ha of cumulative loss, which is only 8\% of the maximum observed cumulative losses.
-
-# plot(ydf$flow.mean, type="l")
-# lines(ydf$flow.rmsd, col=2)
-
-z <- subset(ATPc_forest.loss_2000.2013, variable = "Cumulative Forest Loss", drop=T)
-z$l25 <- z$value * 1.9
-(mean(z$l25) - mean(z$value))
-(mean(z$l25) - mean(z$value))/max(z$value)
-
-```
 
 Coefficients for regressions on median flow and extremes are similar (ranging between 0.03 and 0.06), with p-values < 0.05 for cumulative loss, rainfall, and time in all regressions. The regression on flow deviations (root mean squared deviation from a basin monthly mean) had a slightly higher coefficient (0.10, p-value < 0.05), indicating that forest loss is more strongly associated with flow deviations than the other flow statistics.
 
@@ -260,17 +131,7 @@ If deforestation were to impact rivers in the way previous studies suggest, flow
 
 Again, using the example of the Alto Teles Pires, we estimate hydropower generation potential at a hypothetical single-turbine run-of-river plant located within a head-maximizing 2-km radius of the existing flow gauge.
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=6, fig.height=4, fig.align='center', fig.cap=""}
-
-q <- ATPc_hydrodata_1974.2008
-Ai <- unique(subset(X, site == 17200000, drop=T)$area) * 10^6 # [km^2] -> [m^2]
-
-q$flow<- q$flow/Ai * 86400 * 100 # [m^3/sec] -> [cm/day]
-tsi <- which(as.Date(q$date) %in% seq(as.Date("2004/09/01"), as.Date("2005/08/31"), by="1 day"))
-
-twoord.plot(1:length(tsi),q$flow[tsi],1:length(tsi), q$power[tsi],xlab="2004-2005", ylab="Flow [cm/day]",rylab="Hydropower [MW-day]", type="l", xtickpos=seq(1, 365,by=30)[-1], xticklab=as.character(unique(month(q$date[tsi], label=T, abbr=T))) )
-
-```
+<img src="./WRI.GFW.blog_files/figure-html/unnamed-chunk-8.png" title="" alt="" style="display: block; margin: auto;" />
 **Flow and Modeled Hydropower at the Outlet of the Alto Teles Pires River Basin**
 
 *Flow is basin area-normalized daily flow measured at the basin outlet; Energy is energy generation potential in MW-days based on site-specific, energy-optimizing plant parameters (a single Francis turbine, an optimal plant capacity of 1.5 cm/day, non-zero efficiencies ranging from 0.46 to 0.86, and no minimum environmental flow). Data Source: [Agência Nacional de Águas (ANA)](http://www.ana.gov.br/PortalSuporte/frmSelecaoEstacao.aspx)*
@@ -279,23 +140,7 @@ We apply the percentage increases in flow estimated by the regression to the Alt
 
 The results suggest that in this basin, even extreme deforestation (e.g. the 90% increase in cumulative loss) would have negligible impact on peak energy generation, but possibly small (positive) impact on low flow energy generation. As with flow, it will be important to look at hydropower estimates across more than one basin - and we plan to in future work!
 
-```{r, echo=FALSE, results='hide'}
 
-# wet
-(mean(xw$value)*0.01/30)/min(q$flow[q$power > 0], na.rm=T) # percent of min power flow
-(mean(xw$value)*0.01/30)/max(q$flow, na.rm=T) # percent of max power flow
-
-(mean(xw$value)*0.04/30)/min(q$flow[q$power > 0], na.rm=T)
-(mean(xw$value)*0.04/30)/max(q$flow, na.rm=T)
-
-# dry
-(mean(xd$value)*0.01/30)/min(q$flow[q$power > 0], na.rm=T)
-(mean(xd$value)*0.01/30)/max(q$flow, na.rm=T)
-
-(mean(xd$value)*0.04/30)/min(q$flow[q$power > 0], na.rm=T)
-(mean(xd$value)*0.04/30)/max(q$flow, na.rm=T)
-
-```
 
 # Next Steps
 
