@@ -20,7 +20,8 @@ We generate a novel data set that combines forest change observations, rainfall 
 
 Large-scale land use change in the form of deforestation is observable and quantifiable in the Brazilian rainforest-savanna transition zone.
 
-<img src="TreeCover2000MT.png" style="float: left; width: 30%; margin-right: 1%; margin-bottom: 0.5em;"><img src="ForestLossMT.png" style="float: left; width: 30%; margin-right: 1%; margin-bottom: 0.5em;"><p style="clear: both;"> 
+<img src="TreeCover2000MT.png" style="float: left; width: 10%; margin-right: 1%; margin-bottom: 0.5em;"><img src="ForestLossMT.png" style="float: left; width: 10%; margin-right: 1%; margin-bottom: 0.5em;"><p style="clear: both;"> 
+
 **Forest Cover in 2000 (left) and Forest Loss from 2001-2012 (right) in the Rainforest-Savannah Transition zone state of Mato Grosso, Brazil**
 
 *Data Source: 30m forest cover and forest loss from [Hansen/UMD/Google/USGS/NASA, 2013](http://www.earthenginepartners.appspot.com/science-2013-global-forest/download.html) obtained using [Google Earth Engine](https://earthengine.google.org/)*
@@ -40,6 +41,7 @@ The synthesis of land use, hydrologic, and hydropower data is not trivial. There
 We look at an example river basin located in central Mato Grosso, Brazil: a 10,887 km^2^ headwater basin of the Alto Teles Pires River, a tributary to the Amazon River. Deforestation in this basin occurred prior to 2001, however minimal deforestation continued through 2012, and transitions from pasture to cropland continue today in this region.
 
 <img src="./WRI.GFW.blog_files/figure-html/unnamed-chunk-1.png" title="" alt="" style="display: block; margin: auto;" />
+
 **Forest Loss in the Alto Teles Pires River Headwater Basin: 2001-2012**
 
 *Data Source: [Hansen/UMD/Google/USGS/NASA, 2013](http://www.earthenginepartners.appspot.com/science-2013-global-forest/download.html) obtained using the [GFW API](http://datalab.wri.org/using-the-gfw-api-update)*
@@ -47,6 +49,7 @@ We look at an example river basin located in central Mato Grosso, Brazil: a 10,8
 Total cumulative forest loss since 2001 was 5% of total basin area, with a maximum of 1% of the basin deforested in any year. Because we might expect deforestation to impact ET, we look at some hydrologic data over the same period of time:
 
 <img src="./WRI.GFW.blog_files/figure-html/unnamed-chunk-2.png" title="" alt="" style="display: block; margin: auto;" />
+
 **Water Balance Components in the Alto Teles Pires River Headwater Basin: 2000-2013**
 
 *Rainfall and ET "Data" are basin- and monthly-averaged, area-normalized values; flow is calculated from rainfall and ET. "Trend" is the locally weighted polynomial regression (loess) trend component of seasonally-decomposed data. Data Source: 3-hour (aggregated to daily), 0.25x0.25 degree Tropical Rainfall Measuring Mission (TRMM) 34B2 gridded rainfall product obtained from [Google Earth Engine](https://earthengine.google.org/#detail/TRMM%2F3B42); and 8-day, 1km Moderate Resolution Imaging Spectroradiometer (MODIS) Global Evapotranspiration [MOD16](http://www.ntsg.umt.edu/project/mod16) gridded ET product.*[^fn-WB2.footnote]
@@ -55,7 +58,7 @@ Based on theory, modeling, and field-level studies, we expect to see a *decrease
 
 **Wet Season**
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Wed Oct  8 12:03:50 2014 -->
+<!-- Wed Oct  8 12:09:44 2014 -->
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> Minimum </TH> <TH> 1st Quantile </TH> <TH> Median </TH> <TH> Mean </TH> <TH> 3rd Quantile </TH> <TH> Maximum </TH> <TH> Standard Deviation </TH>  </TR>
   <TR> <TD align="right"> 1974-1984 </TD> <TD align="right"> 2.97 </TD> <TD align="right"> 7.26 </TD> <TD align="right"> 10.50 </TD> <TD align="right"> 11.40 </TD> <TD align="right"> 14.70 </TD> <TD align="right"> 26.20 </TD> <TD align="right"> 5.52 </TD> </TR>
@@ -64,13 +67,12 @@ Based on theory, modeling, and field-level studies, we expect to see a *decrease
 
 **Dry Season**
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Wed Oct  8 12:03:50 2014 -->
+<!-- Wed Oct  8 12:09:44 2014 -->
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> Minimum </TH> <TH> 1st Quantile </TH> <TH> Median </TH> <TH> Mean </TH> <TH> 3rd Quantile </TH> <TH> Maximum </TH> <TH> Standard Deviation </TH>  </TR>
   <TR> <TD align="right"> 1974-1984 </TD> <TD align="right"> 1.02 </TD> <TD align="right"> 1.52 </TD> <TD align="right"> 2.10 </TD> <TD align="right"> 2.30 </TD> <TD align="right"> 2.76 </TD> <TD align="right"> 5.36 </TD> <TD align="right"> 0.98 </TD> </TR>
   <TR> <TD align="right"> 1998-2008 </TD> <TD align="right"> 0.92 </TD> <TD align="right"> 1.27 </TD> <TD align="right"> 1.57 </TD> <TD align="right"> 1.90 </TD> <TD align="right"> 2.12 </TD> <TD align="right"> 5.54 </TD> <TD align="right"> 0.96 </TD> </TR>
    </TABLE>
-\ 
 
 *Statistics are computed on area-normalized, daily flow [cm/day] measured at the outlet of the basin. Data Source: [Agência Nacional de Águas (ANA)](http://www.ana.gov.br/PortalSuporte/frmSelecaoEstacao.aspx)*
 
@@ -92,7 +94,7 @@ In a very standard exploratory capacity, we perform a regression analysis for 72
 
 We regress a set flow statistics (minimum, maximum, mean, median, extremes and deviations) on deforestation and rainfall statistics assumed to be determinants of flow according to hydrologic theory, as well as determined by [model selction criteria](http://en.wikipedia.org/wiki/Model_selection) to be statistically meaningful predictors of flow. Formally, the regression model is: 
 
-$$log(Flow_{it}) \sim \alpha_i + \delta_t + \beta_1 log(Forest \; Loss_{it}) + \beta_2 log(Cumulative \; Forest \; Loss_{it}) + \beta_3 log(Cumulative \; Rain_{it}) + \beta_4 Time_{it}$$
+$$latex log(Flow_{it}) \sim \alpha_i + \delta_t + \beta_1 log(Forest \; Loss_{it}) + \beta_2 log(Cumulative \; Forest \; Loss_{it}) + \beta_3 log(Cumulative \; Rain_{it}) + \beta_4 Time_{it}$$
 
 Forest loss (obtained using the [GFW API](http://datalab.wri.org/using-the-gfw-api-update)) is reported annually, however flow (source: [ANA](http://www.ana.gov.br/PortalSuporte/frmSelecaoEstacao.aspx)) and rainfall (source: [TRMM](https://earthengine.google.org/#detail/TRMM%2F3B42)) are aggregated monthly, therefore observations are monthly averaged values across all variables except forest loss, which is annual. The coefficients of interest on forest loss ($\beta_1$ and $\beta_2$) are obtained by regressing a flow statistic (e.g. mean flow) for basin $i$ and time $t$ on a time-invariant basin fixed effect ($\alpha_i$); basin-invariant fixed effect ($\delta_t$) for month; proportional and cumulative forest loss; cumulative rainfall depth; and time, which is the month and year between 2002 - 2012 (allowing for various polynomial time trends). 
 
@@ -101,7 +103,7 @@ Forest loss (obtained using the [GFW API](http://datalab.wri.org/using-the-gfw-a
 The table below shows results for the model specification wherein $Flow_{it}$ is mean (monthly) flow.
 
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Wed Oct  8 12:03:52 2014 -->
+<!-- Wed Oct  8 12:09:46 2014 -->
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> Estimate </TH> <TH> Std. Error </TH> <TH> t value </TH> <TH> Pr(&gt;|t|) </TH>  </TR>
   <TR> <TD align="right"> log(loss) </TD> <TD align="right"> 0.0010 </TD> <TD align="right"> 0.0112 </TD> <TD align="right"> 0.09 </TD> <TD align="right"> 0.9313 </TD> </TR>
@@ -132,6 +134,7 @@ If deforestation were to impact rivers in the way previous studies suggest, flow
 Again, using the example of the Alto Teles Pires, we estimate hydropower generation potential at a hypothetical single-turbine run-of-river plant located within a head-maximizing 2-km radius of the existing flow gauge.
 
 <img src="./WRI.GFW.blog_files/figure-html/unnamed-chunk-8.png" title="" alt="" style="display: block; margin: auto;" />
+
 **Flow and Modeled Hydropower at the Outlet of the Alto Teles Pires River Basin**
 
 *Flow is basin area-normalized daily flow measured at the basin outlet; Energy is energy generation potential in MW-days based on site-specific, energy-optimizing plant parameters (a single Francis turbine, an optimal plant capacity of 1.5 cm/day, non-zero efficiencies ranging from 0.46 to 0.86, and no minimum environmental flow). Data Source: [Agência Nacional de Águas (ANA)](http://www.ana.gov.br/PortalSuporte/frmSelecaoEstacao.aspx)*

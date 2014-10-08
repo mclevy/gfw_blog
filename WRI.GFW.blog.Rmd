@@ -61,7 +61,8 @@ We generate a novel data set that combines forest change observations, rainfall 
 
 Large-scale land use change in the form of deforestation is observable and quantifiable in the Brazilian rainforest-savanna transition zone.
 
-<img src="TreeCover2000MT.png" style="float: left; width: 30%; margin-right: 1%; margin-bottom: 0.5em;"><img src="ForestLossMT.png" style="float: left; width: 30%; margin-right: 1%; margin-bottom: 0.5em;"><p style="clear: both;"> 
+<img src="TreeCover2000MT.png" style="float: left; width: 10%; margin-right: 1%; margin-bottom: 0.5em;"><img src="ForestLossMT.png" style="float: left; width: 10%; margin-right: 1%; margin-bottom: 0.5em;"><p style="clear: both;"> 
+
 **Forest Cover in 2000 (left) and Forest Loss from 2001-2012 (right) in the Rainforest-Savannah Transition zone state of Mato Grosso, Brazil**
 
 *Data Source: 30m forest cover and forest loss from [Hansen/UMD/Google/USGS/NASA, 2013](http://www.earthenginepartners.appspot.com/science-2013-global-forest/download.html) obtained using [Google Earth Engine](https://earthengine.google.org/)*
@@ -85,6 +86,7 @@ We look at an example river basin located in central Mato Grosso, Brazil: a 10,8
 ggplot(ATPc_forest.loss_2000.2013 ,aes(x=year, y=value, linetype=variable)) + geom_line() + theme_complete_bw(12) + xlab("Year") + ylab("Loss [ha]") + scale_x_continuous(breaks = 2001:2012, labels = as.character(2001:2012)) + theme(legend.title=element_blank(), axis.text.x = element_text(angle = 60, hjust = 1))
 
 ```
+
 **Forest Loss in the Alto Teles Pires River Headwater Basin: 2001-2012**
 
 *Data Source: [Hansen/UMD/Google/USGS/NASA, 2013](http://www.earthenginepartners.appspot.com/science-2013-global-forest/download.html) obtained using the [GFW API](http://datalab.wri.org/using-the-gfw-api-update)*
@@ -99,6 +101,7 @@ colScale <- scale_colour_manual(values = cols)
 ggplot(ATPc_WBdata_2000.2013, aes(x=date, y=value, colour = type)) + geom_line() + facet_wrap(~variable, scales="free") + theme(legend.title=element_blank()) + xlab("Time") + ylab("Water [cm/month]") + colScale + theme_complete_bw(12) + theme(legend.title=element_blank()) 
 
 ```
+
 **Water Balance Components in the Alto Teles Pires River Headwater Basin: 2000-2013**
 
 *Rainfall and ET "Data" are basin- and monthly-averaged, area-normalized values; flow is calculated from rainfall and ET. "Trend" is the locally weighted polynomial regression (loess) trend component of seasonally-decomposed data. Data Source: 3-hour (aggregated to daily), 0.25x0.25 degree Tropical Rainfall Measuring Mission (TRMM) 34B2 gridded rainfall product obtained from [Google Earth Engine](https://earthengine.google.org/#detail/TRMM%2F3B42); and 8-day, 1km Moderate Resolution Imaging Spectroradiometer (MODIS) Global Evapotranspiration [MOD16](http://www.ntsg.umt.edu/project/mod16) gridded ET product.*[^fn-WB2.footnote]
@@ -130,7 +133,6 @@ print(xtable(dfw), type="html")
 print(xtable(dfd), type="html")
 
 ```
-\ 
 
 *Statistics are computed on area-normalized, daily flow [cm/day] measured at the outlet of the basin. Data Source: [Agência Nacional de Águas (ANA)](http://www.ana.gov.br/PortalSuporte/frmSelecaoEstacao.aspx)*
 
@@ -152,7 +154,7 @@ In a very standard exploratory capacity, we perform a regression analysis for 72
 
 We regress a set flow statistics (minimum, maximum, mean, median, extremes and deviations) on deforestation and rainfall statistics assumed to be determinants of flow according to hydrologic theory, as well as determined by [model selction criteria](http://en.wikipedia.org/wiki/Model_selection) to be statistically meaningful predictors of flow. Formally, the regression model is: 
 
-$$log(Flow_{it}) \sim \alpha_i + \delta_t + \beta_1 log(Forest \; Loss_{it}) + \beta_2 log(Cumulative \; Forest \; Loss_{it}) + \beta_3 log(Cumulative \; Rain_{it}) + \beta_4 Time_{it}$$
+$$latex log(Flow_{it}) \sim \alpha_i + \delta_t + \beta_1 log(Forest \; Loss_{it}) + \beta_2 log(Cumulative \; Forest \; Loss_{it}) + \beta_3 log(Cumulative \; Rain_{it}) + \beta_4 Time_{it}$$
 
 Forest loss (obtained using the [GFW API](http://datalab.wri.org/using-the-gfw-api-update)) is reported annually, however flow (source: [ANA](http://www.ana.gov.br/PortalSuporte/frmSelecaoEstacao.aspx)) and rainfall (source: [TRMM](https://earthengine.google.org/#detail/TRMM%2F3B42)) are aggregated monthly, therefore observations are monthly averaged values across all variables except forest loss, which is annual. The coefficients of interest on forest loss ($\beta_1$ and $\beta_2$) are obtained by regressing a flow statistic (e.g. mean flow) for basin $i$ and time $t$ on a time-invariant basin fixed effect ($\alpha_i$); basin-invariant fixed effect ($\delta_t$) for month; proportional and cumulative forest loss; cumulative rainfall depth; and time, which is the month and year between 2002 - 2012 (allowing for various polynomial time trends). 
 
@@ -271,6 +273,7 @@ tsi <- which(as.Date(q$date) %in% seq(as.Date("2004/09/01"), as.Date("2005/08/31
 twoord.plot(1:length(tsi),q$flow[tsi],1:length(tsi), q$power[tsi],xlab="2004-2005", ylab="Flow [cm/day]",rylab="Hydropower [MW-day]", type="l", xtickpos=seq(1, 365,by=30)[-1], xticklab=as.character(unique(month(q$date[tsi], label=T, abbr=T))) )
 
 ```
+
 **Flow and Modeled Hydropower at the Outlet of the Alto Teles Pires River Basin**
 
 *Flow is basin area-normalized daily flow measured at the basin outlet; Energy is energy generation potential in MW-days based on site-specific, energy-optimizing plant parameters (a single Francis turbine, an optimal plant capacity of 1.5 cm/day, non-zero efficiencies ranging from 0.46 to 0.86, and no minimum environmental flow). Data Source: [Agência Nacional de Águas (ANA)](http://www.ana.gov.br/PortalSuporte/frmSelecaoEstacao.aspx)*
