@@ -234,11 +234,11 @@ xd <- subset(ATPc_histdata_1974.2008, type == "Data" & variable == "Flow" & mont
 
 ```
 
-Results are statistically significant for the effect of cumulative forest loss, however the coefficient is small. These results suggests that on average, a 25% increase in cumulative forest loss [ha] in a given year corresponds to a 1\% increase in mean monthly flow; a 90% increase in cumulative forest loss corresponds to a 4\% increase in flow.[^fn-lm.footnote]  To put that in terms of flow rates: a 1\% increase in mean monthly flow in the wet season in the Alto Teles Pires basin is equivalent to an increase in the flow rate by 4.6 m^3^/second; a 4\% increase is equivalent to an increase of 18.2 m^3^/second.
+Results are statistically significant for the effect of cumulative forest loss, however the coefficient is small. These results suggests that on average, a 25% increase in cumulative forest loss [ha] in a given year corresponds to a 1% increase in mean monthly flow; a 90% increase in cumulative forest loss corresponds to a 4% increase in flow.[^fn-lm.footnote]  To put that in terms of flow rates: a 1% increase in mean monthly flow in the wet season in the Alto Teles Pires basin is equivalent to an increase in the flow rate by 4.6 m^3^/second; a 4% increase is equivalent to an increase of 18.2 m^3^/second.
 
 ```{r, results='hide', echo=FALSE}
 
-# A 25% increase in cumulative forest loss is not unrealistic. For the ALto Teles Pires basin, this amounts to saying that were the cumulative forest loss in each year 25% higher than observed, on average each year would see an additional 38 ha of cumulative loss, which is only 8\% of the maximum observed cumulative losses.
+# A 25% increase in cumulative forest loss is not unrealistic. For the ALto Teles Pires basin, this amounts to saying that were the cumulative forest loss in each year 25% higher than observed, on average each year would see an additional 38 ha of cumulative loss, which is only 8% of the maximum observed cumulative losses.
 
 # plot(ydf$flow.mean, type="l")
 # lines(ydf$flow.rmsd, col=2)
@@ -280,7 +280,7 @@ twoord.plot(1:length(tsi),q$flow[tsi],1:length(tsi), q$power[tsi],xlab="2004-200
 
 *Flow is basin area-normalized daily flow measured at the basin outlet; Energy is energy generation potential in MW-days based on site-specific, energy-optimizing plant parameters (a single Francis turbine, an optimal plant capacity of 1.5 cm/day, non-zero efficiencies ranging from 0.46 to 0.86, and no minimum environmental flow). Data Source: [Agência Nacional de Águas (ANA)](http://www.ana.gov.br/PortalSuporte/frmSelecaoEstacao.aspx)*
 
-We apply the percentage increases in flow estimated by the regression to the Alto Teles Pires case: in the wet season, a 1\% (or 4\%) increase in mean wet season flow is equivalent to 2.4\% (9.6\%) of the minimum power-generating flow rate, and 0.2\% (0.9\%) of the maximum power-generating flow rate. In the dry season, both 1\% or 4\% increases in mean flow represent an insignificant fraction of power-generating flow extremes.
+We apply the percentage increases in flow estimated by the regression to the Alto Teles Pires case: in the wet season, a 1% (or 4%) increase in mean wet season flow is equivalent to 2.4% (9.6%) of the minimum power-generating flow rate, and 0.2% (0.9%) of the maximum power-generating flow rate. In the dry season, both 1% or 4% increases in mean flow represent an insignificant fraction of power-generating flow extremes.
 
 The results suggest that in this basin, even extreme deforestation (e.g. the 90% increase in cumulative loss) would have negligible impact on peak energy generation, but possibly small (positive) impact on low flow energy generation. As with flow, it will be important to look at hydropower estimates across more than one basin - and we plan to in future work!
 
@@ -326,4 +326,4 @@ This work was made possible through the support of the [GFW Graduate Student Res
 
 [^fn-LUCC.footnote]: For example, from [additional land use data](http://iopscience.iop.org/1748-9326/9/6/064010), we know approximately 80% of the basin was pasture throughout the 2001-2012 period.
 
-[^fn-lm.footnote]: According to the log-log model, percentage changes are calculated from coefficients as: \% $\triangle$ flow change = $\beta_1$ * \% $\triangle$ change in forest loss
+[^fn-lm.footnote]: According to the log-log model, percentage changes are calculated from coefficients as: % chang in flow = $\beta_1$ * % change in forest loss

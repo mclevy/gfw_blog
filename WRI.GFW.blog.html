@@ -91,7 +91,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <p><strong>Water Balance Components in the Alto Teles Pires River Headwater Basin: 2000-2013</strong></p>
 <p><em>Rainfall and ET “Data” are basin- and monthly-averaged, area-normalized values; flow is calculated from rainfall and ET. “Trend” is the locally weighted polynomial regression (loess) trend component of seasonally-decomposed data. Data Source: 3-hour (aggregated to daily), 0.25x0.25 degree Tropical Rainfall Measuring Mission (TRMM) 34B2 gridded rainfall product obtained from <a href="https://earthengine.google.org/#detail/TRMM%2F3B42">Google Earth Engine</a>; and 8-day, 1km Moderate Resolution Imaging Spectroradiometer (MODIS) Global Evapotranspiration <a href="http://www.ntsg.umt.edu/project/mod16">MOD16</a> gridded ET product.</em><a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></p>
 <p>Based on theory, modeling, and field-level studies, we expect to see a <em>decrease</em> in ET with increased deforestation. However, the basin shows no obvious shift in ET. The figure above made use of gridded rainfall and ET products, which provide great spatial resolution, but are only available beginning in 2000. However, historical rainfall and flow gauge (point-located) data are available for this basin going back to the mid 1970s, which is of interest because deforestation began well before 2001. We look at summary statistics for seasonal flow between 1974-1984 and 1998-2008, assuming these decades capture an approximate pre- and post-deforestation period.</p>
-<strong>Wet Season</strong> <!-- html table generated in R 3.1.0 by xtable 1.7-3 package --> <!-- Wed Oct  8 12:17:40 2014 -->
+<strong>Wet Season</strong> <!-- html table generated in R 3.1.0 by xtable 1.7-3 package --> <!-- Wed Oct  8 12:20:56 2014 -->
 <TABLE border="1">
 <TR> <TH>  </TH> <TH> 
 Minimum
@@ -144,7 +144,7 @@ Standard Deviation
 </TD> </TR>
    </TABLE>
 
-<strong>Dry Season</strong> <!-- html table generated in R 3.1.0 by xtable 1.7-3 package --> <!-- Wed Oct  8 12:17:40 2014 -->
+<strong>Dry Season</strong> <!-- html table generated in R 3.1.0 by xtable 1.7-3 package --> <!-- Wed Oct  8 12:20:56 2014 -->
 <TABLE border="1">
 <TR> <TH>  </TH> <TH> 
 Minimum
@@ -220,7 +220,7 @@ Standard Deviation
 <h3>Results</h3>
 <p>The table below shows results for the model specification wherein <span class="math">\(Flow_{it}\)</span> is mean (monthly) flow.</p>
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Wed Oct  8 12:17:42 2014 -->
+<!-- Wed Oct  8 12:20:58 2014 -->
 <TABLE border="1">
 <TR> <TH>  </TH> <TH> 
 Estimate
@@ -309,7 +309,7 @@ time
 <ol>
 <li id="fn1"><p>For a summary of this process, see the Woods Hole Research Center’s <a href="http://www.whrc.org/ecosystem/amazon_water.html">discussion of deforestation and water feedbacks</a>. There are other ways that vegetation change can impact flow, but at large scales, the mechanism is primarily ET. This simple water balance model ignores a great deal of complexity, but the formula is valid over sufficiently long period of time (so that short term water storage in soils can be neglected), where diversions or reservoirs do not significantly impact river flow, and where drainage to a groundwater aquifer is negligible.<a href="#fnref1">↩</a></p></li>
 <li id="fn2"><p>Ideally, a water balance that ignores change in storage, as presented here, would be calculated over a full year. We show monthly water-balance flow purely for illustration. The mean residence time of water in this basin was estimated to be between 15 days.<a href="#fnref2">↩</a></p></li>
-<li id="fn3"><p>According to the log-log model, percentage changes are calculated from coefficients as: % <span class="math">\(\triangle\)</span> flow change = <span class="math">\(\beta_1\)</span> * % <span class="math">\(\triangle\)</span> change in forest loss<a href="#fnref3">↩</a></p></li>
+<li id="fn3"><p>According to the log-log model, percentage changes are calculated from coefficients as: % chang in flow = <span class="math">\(\beta_1\)</span> * % change in forest loss<a href="#fnref3">↩</a></p></li>
 <li id="fn4"><p>These sites are not necessarily locations where hydropower development is slated, but obtaining information on hydropower generation at river flow locations across the study region provides an approximation to energy generation capacities in the region, and the only way to empirically connect land use change, flow, and hydropower generation estimates.<a href="#fnref4">↩</a></p></li>
 </ol>
 </div>

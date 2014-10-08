@@ -58,7 +58,7 @@ Based on theory, modeling, and field-level studies, we expect to see a *decrease
 
 **Wet Season**
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Wed Oct  8 12:17:40 2014 -->
+<!-- Wed Oct  8 12:20:56 2014 -->
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> Minimum </TH> <TH> 1st Quantile </TH> <TH> Median </TH> <TH> Mean </TH> <TH> 3rd Quantile </TH> <TH> Maximum </TH> <TH> Standard Deviation </TH>  </TR>
   <TR> <TD align="right"> 1974-1984 </TD> <TD align="right"> 2.97 </TD> <TD align="right"> 7.26 </TD> <TD align="right"> 10.50 </TD> <TD align="right"> 11.40 </TD> <TD align="right"> 14.70 </TD> <TD align="right"> 26.20 </TD> <TD align="right"> 5.52 </TD> </TR>
@@ -67,7 +67,7 @@ Based on theory, modeling, and field-level studies, we expect to see a *decrease
 
 **Dry Season**
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Wed Oct  8 12:17:40 2014 -->
+<!-- Wed Oct  8 12:20:56 2014 -->
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> Minimum </TH> <TH> 1st Quantile </TH> <TH> Median </TH> <TH> Mean </TH> <TH> 3rd Quantile </TH> <TH> Maximum </TH> <TH> Standard Deviation </TH>  </TR>
   <TR> <TD align="right"> 1974-1984 </TD> <TD align="right"> 1.02 </TD> <TD align="right"> 1.52 </TD> <TD align="right"> 2.10 </TD> <TD align="right"> 2.30 </TD> <TD align="right"> 2.76 </TD> <TD align="right"> 5.36 </TD> <TD align="right"> 0.98 </TD> </TR>
@@ -105,7 +105,7 @@ Forest loss (obtained using the [GFW API](http://datalab.wri.org/using-the-gfw-a
 The table below shows results for the model specification wherein $Flow_{it}$ is mean (monthly) flow.
 
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Wed Oct  8 12:17:42 2014 -->
+<!-- Wed Oct  8 12:20:58 2014 -->
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> Estimate </TH> <TH> Std. Error </TH> <TH> t value </TH> <TH> Pr(&gt;|t|) </TH>  </TR>
   <TR> <TD align="right"> log(loss) </TD> <TD align="right"> 0.0010 </TD> <TD align="right"> 0.0112 </TD> <TD align="right"> 0.09 </TD> <TD align="right"> 0.9313 </TD> </TR>
@@ -117,7 +117,7 @@ p: 85 , N: 5856 , Adjusted R-squared: 0.77
 
 
 
-Results are statistically significant for the effect of cumulative forest loss, however the coefficient is small. These results suggests that on average, a 25% increase in cumulative forest loss [ha] in a given year corresponds to a 1\% increase in mean monthly flow; a 90% increase in cumulative forest loss corresponds to a 4\% increase in flow.[^fn-lm.footnote]  To put that in terms of flow rates: a 1\% increase in mean monthly flow in the wet season in the Alto Teles Pires basin is equivalent to an increase in the flow rate by 4.6 m^3^/second; a 4\% increase is equivalent to an increase of 18.2 m^3^/second.
+Results are statistically significant for the effect of cumulative forest loss, however the coefficient is small. These results suggests that on average, a 25% increase in cumulative forest loss [ha] in a given year corresponds to a 1% increase in mean monthly flow; a 90% increase in cumulative forest loss corresponds to a 4% increase in flow.[^fn-lm.footnote]  To put that in terms of flow rates: a 1% increase in mean monthly flow in the wet season in the Alto Teles Pires basin is equivalent to an increase in the flow rate by 4.6 m^3^/second; a 4% increase is equivalent to an increase of 18.2 m^3^/second.
 
 
 
@@ -141,7 +141,7 @@ Again, using the example of the Alto Teles Pires, we estimate hydropower generat
 
 *Flow is basin area-normalized daily flow measured at the basin outlet; Energy is energy generation potential in MW-days based on site-specific, energy-optimizing plant parameters (a single Francis turbine, an optimal plant capacity of 1.5 cm/day, non-zero efficiencies ranging from 0.46 to 0.86, and no minimum environmental flow). Data Source: [Agência Nacional de Águas (ANA)](http://www.ana.gov.br/PortalSuporte/frmSelecaoEstacao.aspx)*
 
-We apply the percentage increases in flow estimated by the regression to the Alto Teles Pires case: in the wet season, a 1\% (or 4\%) increase in mean wet season flow is equivalent to 2.4\% (9.6\%) of the minimum power-generating flow rate, and 0.2\% (0.9\%) of the maximum power-generating flow rate. In the dry season, both 1\% or 4\% increases in mean flow represent an insignificant fraction of power-generating flow extremes.
+We apply the percentage increases in flow estimated by the regression to the Alto Teles Pires case: in the wet season, a 1% (or 4%) increase in mean wet season flow is equivalent to 2.4% (9.6%) of the minimum power-generating flow rate, and 0.2% (0.9%) of the maximum power-generating flow rate. In the dry season, both 1% or 4% increases in mean flow represent an insignificant fraction of power-generating flow extremes.
 
 The results suggest that in this basin, even extreme deforestation (e.g. the 90% increase in cumulative loss) would have negligible impact on peak energy generation, but possibly small (positive) impact on low flow energy generation. As with flow, it will be important to look at hydropower estimates across more than one basin - and we plan to in future work!
 
@@ -171,4 +171,4 @@ This work was made possible through the support of the [GFW Graduate Student Res
 
 [^fn-LUCC.footnote]: For example, from [additional land use data](http://iopscience.iop.org/1748-9326/9/6/064010), we know approximately 80% of the basin was pasture throughout the 2001-2012 period.
 
-[^fn-lm.footnote]: According to the log-log model, percentage changes are calculated from coefficients as: \% $\triangle$ flow change = $\beta_1$ * \% $\triangle$ change in forest loss
+[^fn-lm.footnote]: According to the log-log model, percentage changes are calculated from coefficients as: % chang in flow = $\beta_1$ * % change in forest loss
