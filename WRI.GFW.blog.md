@@ -34,7 +34,7 @@ Rain that falls on a river basin leaves the basin in the form of river flow or e
 
 ## Water Data Science
 
-The synthesis of land use, hydrologic, and hydropower data is not trivial. Therefore, a substantial part of our research effort has focused on acquiring, processing, and synthesizing data from different sources. For river flow, the temporal and spatial units of analysis are variable and irregular, and data are often poor quality. Rainfall and especially ET data are available at a limited number of sites in Brazil, although new gridded products provide improved spatial resolution. Estimating hydropower generation potential can be similarly difficult because those estimates rely on measurements of flow. Land use data, in comparison, is relatively straightforward to obtain and analyze, but is only available over limited time periods, or at very course spatial resolution.
+Getting to the point where we can ask questions of land use, hydrologic, and hydropower data together is not trivial. A substantial part of our research effort has focused on acquiring, processing, and synthesizing data from different sources. For river flow, the temporal and spatial units of analysis are variable and irregular, and data are often poor quality. Rainfall and especially ET data are available at a limited number of sites in Brazil, although new gridded products provide improved spatial resolution. Estimating hydropower generation potential can be similarly difficult because those estimates rely on measurements of flow. Land use data, in comparison, is relatively straightforward to obtain and analyze, but is only available over limited time periods, or at very course spatial resolution.
 
 ### Case Study
 
@@ -58,7 +58,7 @@ Based on theory, modeling, and field-level studies, we expect to see a *decrease
 
 **Wet Season**
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Wed Oct  8 12:20:56 2014 -->
+<!-- Fri Oct 10 09:10:55 2014 -->
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> Minimum </TH> <TH> 1st Quantile </TH> <TH> Median </TH> <TH> Mean </TH> <TH> 3rd Quantile </TH> <TH> Maximum </TH> <TH> Standard Deviation </TH>  </TR>
   <TR> <TD align="right"> 1974-1984 </TD> <TD align="right"> 2.97 </TD> <TD align="right"> 7.26 </TD> <TD align="right"> 10.50 </TD> <TD align="right"> 11.40 </TD> <TD align="right"> 14.70 </TD> <TD align="right"> 26.20 </TD> <TD align="right"> 5.52 </TD> </TR>
@@ -67,7 +67,7 @@ Based on theory, modeling, and field-level studies, we expect to see a *decrease
 
 **Dry Season**
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Wed Oct  8 12:20:56 2014 -->
+<!-- Fri Oct 10 09:10:55 2014 -->
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> Minimum </TH> <TH> 1st Quantile </TH> <TH> Median </TH> <TH> Mean </TH> <TH> 3rd Quantile </TH> <TH> Maximum </TH> <TH> Standard Deviation </TH>  </TR>
   <TR> <TD align="right"> 1974-1984 </TD> <TD align="right"> 1.02 </TD> <TD align="right"> 1.52 </TD> <TD align="right"> 2.10 </TD> <TD align="right"> 2.30 </TD> <TD align="right"> 2.76 </TD> <TD align="right"> 5.36 </TD> <TD align="right"> 0.98 </TD> </TR>
@@ -90,7 +90,7 @@ In the land-water-energy nexus context, we are interested in several things:
 2. If we find an association between land use change and flow, is that association meaningful for hydropower?
 3. If we do not observe a relationship between land use change and flow, why? And, do we have reason to believe we might see a relationship in the future?
 
-In a very standard exploratory capacity, we perform a regression analysis for 72 gauged basins (a total of 5,856 monthly observations) within the state of Mato Grosso, including the Alto Teles Pires River Basin. We then connect results from the analysis to hydropower generation estimates.
+In a very standard exploratory capacity, we perform a regression analysis for 72 gauged basins (a total of 5,856 monthly observations) within the state of Mato Grosso, including the Alto Teles Pires headwater basin. We then connect results from the analysis to hydropower generation estimates.
 
 We regress a set flow statistics (minimum, maximum, mean, median, extremes and deviations) on deforestation and rainfall statistics assumed to be determinants of flow according to hydrologic theory, as well as determined by [model selction criteria](http://en.wikipedia.org/wiki/Model_selection) to be statistically meaningful predictors of flow. Formally, the regression model is: 
 
@@ -105,7 +105,7 @@ Forest loss (obtained using the [GFW API](http://datalab.wri.org/using-the-gfw-a
 The table below shows results for the model specification wherein $Flow_{it}$ is mean (monthly) flow.
 
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Wed Oct  8 12:20:58 2014 -->
+<!-- Fri Oct 10 09:10:57 2014 -->
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> Estimate </TH> <TH> Std. Error </TH> <TH> t value </TH> <TH> Pr(&gt;|t|) </TH>  </TR>
   <TR> <TD align="right"> log(loss) </TD> <TD align="right"> 0.0010 </TD> <TD align="right"> 0.0112 </TD> <TD align="right"> 0.09 </TD> <TD align="right"> 0.9313 </TD> </TR>
@@ -117,7 +117,7 @@ p: 85 , N: 5856 , Adjusted R-squared: 0.77
 
 
 
-Results are statistically significant for the effect of cumulative forest loss, however the coefficient is small. These results suggests that on average, a 25% increase in cumulative forest loss [ha] in a given year corresponds to a 1% increase in mean monthly flow; a 90% increase in cumulative forest loss corresponds to a 4% increase in flow.[^fn-lm.footnote]  To put that in terms of flow rates: a 1% increase in mean monthly flow in the wet season in the Alto Teles Pires basin is equivalent to an increase in the flow rate by 4.6 m^3^/second; a 4% increase is equivalent to an increase of 18.2 m^3^/second.
+Results are statistically significant for the effect of cumulative forest loss, however the coefficient is small. These results suggests that on average, a 25% increase in cumulative forest loss [ha] in a given year corresponds to a 1% increase in mean monthly flow; a 90% increase in cumulative forest loss corresponds to a 4% increase in flow.[^fn-lm.footnote]  To put that in terms of flow rates: a 1% increase in mean monthly flow in the wet season in the Alto Teles Pires headwater basin is equivalent to an increase in the flow rate by 4.6 m^3/second; a 4% increase is equivalent to an increase of 18.2 m^3/second.
 
 
 
@@ -133,25 +133,27 @@ In our study, we use a simple algorithm to estimate energy-maximizing flow capac
 
 If deforestation were to impact rivers in the way previous studies suggest, flow might occur more or less frequently within the flow range for which plants are designed, resulting in sub-optimal generation. There have been multiple calls for research on land use change impacts to river flow for precisely this reason. Modeling studies suggest deforestation may impact large reservoir facilities in Brazil, however, empirical analyses are limited, as are those that focus on small hydropower.
 
-Again, using the example of the Alto Teles Pires, we estimate hydropower generation potential at a hypothetical single-turbine run-of-river plant located within a head-maximizing 2-km radius of the existing flow gauge.
+Again, using the example of the Alto Teles Pires headwater basin, we estimate hydropower generation potential at a hypothetical single-turbine run-of-river plant located within a head-maximizing 2-km radius of the existing flow gauge.
 
 <img src="./WRI.GFW.blog_files/figure-html/unnamed-chunk-8.png" title="" alt="" style="display: block; margin: auto;" />
 
-**Flow and Modeled Hydropower at the Outlet of the Alto Teles Pires River Basin**
+**Flow and Modeled Hydropower at the Outlet of the Alto Teles Pires River Headwater Basin**
 
 *Flow is basin area-normalized daily flow measured at the basin outlet; Energy is energy generation potential in MW-days based on site-specific, energy-optimizing plant parameters (a single Francis turbine, an optimal plant capacity of 1.5 cm/day, non-zero efficiencies ranging from 0.46 to 0.86, and no minimum environmental flow). Data Source: [Agência Nacional de Águas (ANA)](http://www.ana.gov.br/PortalSuporte/frmSelecaoEstacao.aspx)*
 
 We apply the percentage increases in flow estimated by the regression to the Alto Teles Pires case: in the wet season, a 1% (or 4%) increase in mean wet season flow is equivalent to 2.4% (9.6%) of the minimum power-generating flow rate, and 0.2% (0.9%) of the maximum power-generating flow rate. In the dry season, both 1% or 4% increases in mean flow represent an insignificant fraction of power-generating flow extremes.
 
-The results suggest that in this basin, even extreme deforestation (e.g. the 90% increase in cumulative loss) would have negligible impact on peak energy generation, but possibly small (positive) impact on low flow energy generation. As with flow, it will be important to look at hydropower estimates across more than one basin - and we plan to in future work!
+These results are *not* causal, only statistical and exploratory, but for illustration: if our final analysis yielded similar results, then we might say extreme deforestation (e.g. the 90% increase in cumulative loss) would have negligible impact on peak energy generation, but possibly small (positive) impact on low flow energy generation. As with flow, it will be important to look at hydropower estimates across more than one basin, and move from asking statistical (association/correlation) questions to causal questions - and we plan to in future work!
 
 
 
-# Next Steps
+## Next Steps
 
 Ongoing work includes exploration of hydroclimate variables over an extended four-state region, which includes between 150-200 additional flow gauges; refinement of hydropower modeling methods; inclusion of other land use type categorizations, such as pasture and cropland; and additional regression (and other statistical) analyses of the relationship between land use change and flow, hydropower, and ultimately - temperature, humidity, and rainfall characteristics meaningful to food and biofuel agriculture.
 
 Where data availability reaches it's limit - particularity in the case of flow measurements, we plan to employ limited modeling techniques. For example, many basins, especially small ones, are not gauged in Brazil but may have more dramatic response to land use change. Therefore, using simple, data-validated flow prediction models, we can carry out an analysis similar to the one presented here, but on a much larger and more diverse set of basins.
+
+Lastly, we plan to move from an exploratory, statistical analysis of relationships between land, climate, and hydrologic variables to a causal analysis of the impact of land use change on flow and hyropower.
 
 ****
 
@@ -164,8 +166,6 @@ This work was made possible through the support of the [GFW Graduate Student Res
 [^fn-WB.footnote]: For a summary of this process, see the Woods Hole Research Center's [discussion of deforestation and water feedbacks](http://www.whrc.org/ecosystem/amazon_water.html). There are other ways that vegetation change can impact flow, but at large scales, the mechanism is primarily ET. This simple water balance model ignores a great deal of complexity, but the formula is valid over sufficiently long period of time (so that short term water storage in soils can be neglected), where diversions or reservoirs do not significantly impact river flow, and where drainage to a groundwater aquifer is negligible.
 
 [^fn-WB2.footnote]: Ideally, a water balance that ignores change in storage, as presented here, would be calculated over a full year. We show monthly water-balance flow purely for illustration. The mean residence time of water in this basin was estimated to be between 15 days.
-
-[^fn-ET.footnote]: Validation (comparison with ground-measured ET records) for this product included a single site in tropical Brazil.
 
 [^fn-hydro.footnote]: These sites are not necessarily locations where hydropower development is slated, but obtaining information on hydropower generation at river flow locations across the study region provides an approximation to energy generation capacities in the region, and the only way to empirically connect land use change, flow, and hydropower generation estimates.
 
