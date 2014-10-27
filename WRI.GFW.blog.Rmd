@@ -159,7 +159,7 @@ $$ log(Flow_{it}) \sim \alpha_i + \delta_t + \beta_1 log(Forest \; Loss_{it}) + 
 
 ![](eqn.png)
 
-Forest loss (obtained using the [GFW API](http://datalab.wri.org/using-the-gfw-api-update)) is reported annually, however flow (source: [ANA](http://www.ana.gov.br/PortalSuporte/frmSelecaoEstacao.aspx)) and rainfall (source: [TRMM](https://earthengine.google.org/#detail/TRMM%2F3B42)) are aggregated monthly, therefore observations are monthly averaged values across all variables except forest loss, which is annual. The coefficients of interest on forest loss ($\beta_1$ and $\beta_2$) are obtained by regressing a flow statistic (e.g. mean flow) for basin $i$ and time $t$ on a time-invariant basin fixed effect ($\alpha_i$); basin-invariant fixed effect ($\delta_t$) for month; proportional and cumulative forest loss; cumulative rainfall depth; and time, which is the month and year between 2002 - 2012 (allowing for various polynomial time trends). 
+Forest loss (obtained using the [GFW API](http://datalab.wri.org/using-the-gfw-api-update)) is reported annually, however flow (source: [ANA](http://www.ana.gov.br/PortalSuporte/frmSelecaoEstacao.aspx)) and rainfall (source: [TRMM](https://earthengine.google.org/#detail/TRMM%2F3B42)) are aggregated monthly, therefore observations are monthly averaged values across all variables except forest loss, which is annual. The coefficients of interest on forest loss ($\beta_1$ and $\beta_2$) are obtained by regressing a flow statistic (e.g. mean flow) for basin $i$ and time $t$ on a time-invariant fixed effect ($\alpha_i$) for the basin; basin-invariant fixed effect ($\delta_t$) for month; annual and cumulative forest loss; cumulative rainfall depth; and time, which is the month and year between 2002 - 2012 (allowing for various polynomial time trends). 
 
 ### Results
 
@@ -329,4 +329,4 @@ This work was made possible through the support of the [GFW Graduate Student Res
 
 [^fn-LUCC.footnote]: For example, from [additional land use data](http://iopscience.iop.org/1748-9326/9/6/064010), we know approximately 80% of the basin was pasture throughout the 2001-2012 period.
 
-[^fn-lm.footnote]: According to the log-log model, percentage changes are calculated from coefficients as: % chang in flow = $\beta_1$ * % change in forest loss
+[^fn-lm.footnote]: According to the log-log model, percentage changes are calculated from coefficients as: % change in flow = $\beta_1$ * % change in forest loss
