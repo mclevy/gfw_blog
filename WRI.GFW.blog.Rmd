@@ -80,7 +80,7 @@ Getting to the point where we can ask questions of land use, hydrologic, and hyd
 
 ### Case Study
 
-We look at an example river basin located in central Mato Grosso, Brazil: a 10,887 km^2 headwater basin of the Alto Teles Pires River, a tributary to the Amazon River. Deforestation in this basin occurred prior to 2001, however minimal deforestation continued through 2012, and transitions from pasture to cropland continue today in this region.
+We look at an example river basin located in central Mato Grosso, Brazil: a 10,887 km^2 headwater basin of the Alto Teles Pires River, a tributary to the Amazon River. Deforestation in this basin occurred prior to 2001, however minimal deforestation occurred from 2001 to 2012, and transitions from pasture to cropland continue today.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=6, fig.height=2.5, fig.align='center', fig.cap=""}
 
@@ -305,7 +305,7 @@ These results are *not* causal, only statistical and exploratory, but for illust
 
 Ongoing work includes exploration of hydroclimate variables over an extended four-state region, which includes between 150-200 additional flow gauges; refinement of hydropower modeling methods; inclusion of other land use type categorizations, such as pasture and cropland; and additional regression (and other statistical) analyses of the relationship between land use change and flow, hydropower, and ultimately - hydroclimate characteristics meaningful to food and biofuel agriculture in the region.
 
-Where data availability reaches it's limit - particularity in the case of flow measurements, we plan to employ limited modeling techniques. For example, many basins, especially small ones, are not gauged in Brazil but may have more dramatic response to land use change. Therefore, using simple, data-validated flow prediction models, we can carry out an analysis similar to the one presented here, but on a much larger and more diverse set of basins.
+Where data availability reaches its limit - particularity in the case of flow measurements, we plan to employ limited modeling techniques. For example, many basins, especially small ones, are not gauged in Brazil but may have more dramatic response to land use change. Therefore, using simple, data-validated flow prediction models, we can carry out an analysis similar to the one presented here, but on a much larger and more diverse set of basins.
 
 Lastly, we plan to move from an exploratory, statistical analysis of relationships between land, climate, and hydrologic variables to a causal analysis of the impact of land use change on flow and hydropower.
 
