@@ -14,7 +14,7 @@ We present preliminary results from an investigation of this land-water-energy n
 
 Our research asks: **has land use change, such as deforestation, measurably impacted regional water cycles, and could it impact water-cycle-dependent energy and agricultural production now and in the future?**
 
-We generate a novel data set that combines forest change observations, rainfall and streamflow records, and hydropower generation estimates in river basins of Mato Grosso, Brazil. We then present results from a preliminary analysis of the relationships between land use change, flow, and hydropower.
+We generate a novel data set that combines forest change observations, rainfall and streamflow records, and hydropower generation estimates in river basins of Mato Grosso, Brazil. We then present results from a preliminary analysis of the relationships between land use change, flow, and hydropower, which suggest that even extreme deforestation may have only a small impact on small hydropower energy generation in the study region.[^fn-ecosystem.footnote]
 
 ## Land Use Change and the Hydroclimate
 
@@ -38,7 +38,7 @@ Getting to the point where we can ask questions of land use, hydrologic, and hyd
 
 ### Case Study
 
-We look at an example river basin located in central Mato Grosso, Brazil: a 10,887 km^2^ headwater basin of the Alto Teles Pires River, a tributary to the Amazon River. Deforestation in this basin occurred prior to 2001, however minimal deforestation continued through 2012, and transitions from pasture to cropland continue today in this region.
+We look at an example river basin located in central Mato Grosso, Brazil: a 10,887 km^2 headwater basin of the Alto Teles Pires River, a tributary to the Amazon River. Deforestation in this basin occurred prior to 2001, however minimal deforestation continued through 2012, and transitions from pasture to cropland continue today in this region.
 
 <img src="./WRI.GFW.blog_files/figure-html/unnamed-chunk-1.png" title="" alt="" style="display: block; margin: auto;" />
 
@@ -58,7 +58,7 @@ Based on theory, modeling, and field-level studies, we expect to see a *decrease
 
 **Wet Season**
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Mon Nov 10 16:37:27 2014 -->
+<!-- Tue Nov 11 13:52:18 2014 -->
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> Minimum </TH> <TH> 1st Quantile </TH> <TH> Median </TH> <TH> Mean </TH> <TH> 3rd Quantile </TH> <TH> Maximum </TH> <TH> Standard Deviation </TH>  </TR>
   <TR> <TD align="right"> 1974-1984 </TD> <TD align="right"> 2.97 </TD> <TD align="right"> 7.26 </TD> <TD align="right"> 10.50 </TD> <TD align="right"> 11.40 </TD> <TD align="right"> 14.70 </TD> <TD align="right"> 26.20 </TD> <TD align="right"> 5.52 </TD> </TR>
@@ -67,7 +67,7 @@ Based on theory, modeling, and field-level studies, we expect to see a *decrease
 
 **Dry Season**
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Mon Nov 10 16:37:27 2014 -->
+<!-- Tue Nov 11 13:52:18 2014 -->
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> Minimum </TH> <TH> 1st Quantile </TH> <TH> Median </TH> <TH> Mean </TH> <TH> 3rd Quantile </TH> <TH> Maximum </TH> <TH> Standard Deviation </TH>  </TR>
   <TR> <TD align="right"> 1974-1984 </TD> <TD align="right"> 1.02 </TD> <TD align="right"> 1.52 </TD> <TD align="right"> 2.10 </TD> <TD align="right"> 2.30 </TD> <TD align="right"> 2.76 </TD> <TD align="right"> 5.36 </TD> <TD align="right"> 0.98 </TD> </TR>
@@ -94,9 +94,7 @@ In a very standard exploratory capacity, we perform a regression analysis for 72
 
 We regress a set flow statistics (minimum, maximum, mean, median, extremes and deviations) on deforestation and rainfall statistics assumed to be determinants of flow according to hydrologic theory, as well as determined by [model selction criteria](http://en.wikipedia.org/wiki/Model_selection) to be statistically meaningful predictors of flow. Formally, the regression model is:[^fn-model.footnote]
 
-$$log(Flow_{it}) \sim \alpha_i + \delta_t + \beta_1 log(Forest \; Loss_{it}) + \beta_2 log(Cumulative \; Forest \; Loss_{it}) + \beta_3 log(Cumulative \; Rain_{it}) + \beta_4 Time_{t} + \epsilon_{it}$$
-
-![](eqn.png)
+log(Flow<sub>it</sub>) = <VAR>&alpha;</VAR><sub>i</sub> + <VAR>&delta;</VAR><sub>t</sub> + <VAR>&beta;</VAR><sub>1</sub> log(Forest Loss<sub>it</sub>) + <VAR>&beta;</VAR><sub>2</sub> log(Cumulative Forest Loss<sub>it</sub>) + <VAR>&beta;</VAR><sub>3</sub> log(Cumulative Rain<sub>it</sub>) + <VAR>&beta;</VAR><sub>4</sub> Time<sub>t</sub> + <VAR>&epsilon;</VAR><sub>it</sub> 
 
 Forest loss (obtained using the [GFW API](http://datalab.wri.org/using-the-gfw-api-update)) is reported annually, however flow (source: [ANA](http://www.ana.gov.br/PortalSuporte/frmSelecaoEstacao.aspx)) and rainfall (source: [TRMM](https://earthengine.google.org/#detail/TRMM%2F3B42)) are aggregated monthly, therefore observations are monthly averaged values across all variables except forest loss, which is annual. The coefficients of interest on forest loss ($\beta_1$ and $\beta_2$) are obtained by regressing a flow statistic (e.g. mean flow) for basin $i$ and time $t$ on a time-invariant fixed effect ($\alpha_i$) for the basin; basin-invariant fixed effect ($\delta_t$) for month; annual and cumulative forest loss; cumulative rainfall depth; and time, which is the month and year between 2002 - 2012 (allowing for various polynomial time trends). 
 
@@ -105,7 +103,7 @@ Forest loss (obtained using the [GFW API](http://datalab.wri.org/using-the-gfw-a
 The table below shows results for the model specification wherein $Flow_{it}$ is mean (monthly) flow.
 
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Mon Nov 10 16:37:29 2014 -->
+<!-- Tue Nov 11 13:52:20 2014 -->
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> Estimate </TH> <TH> Std. Error </TH> <TH> t value </TH> <TH> Pr(&gt;|t|) </TH>  </TR>
   <TR> <TD align="right"> log(loss) </TD> <TD align="right"> 0.0010 </TD> <TD align="right"> 0.0112 </TD> <TD align="right"> 0.09 </TD> <TD align="right"> 0.9313 </TD> </TR>
@@ -117,7 +115,7 @@ p: 85 , N: 5856 , Adjusted R-squared: 0.77
 
 
 
-Results are statistically significant for the effect of cumulative forest loss, however the coefficient is small. These results suggests that on average, a 25% increase in cumulative forest loss [ha] in a given year corresponds to a 1% increase in mean monthly flow; a 90% increase in cumulative forest loss corresponds to a 4% increase in flow.[^fn-lm.footnote]  To put that in terms of flow rates: a 1% increase in mean monthly flow in the wet season in the Alto Teles Pires headwater basin is equivalent to an increase in the flow rate by 4.6 m^3/second; a 4% increase is equivalent to an increase of 18.2 m^3/second.
+Results are statistically significant for the effect of cumulative forest loss, however the coefficient is small. These results suggests that on average, a 25% increase in cumulative forest loss [ha] in a given year (which is a lot!) corresponds to a 1% increase in mean monthly flow.[^fn-lm.footnote]  To put that in terms of flow rates: a 1% increase in mean monthly flow in the wet season in the Alto Teles Pires headwater basin is equivalent to an increase in the flow rate by 4.6 m^3/second.
 
 
 
@@ -141,19 +139,19 @@ Again, using the example of the Alto Teles Pires headwater basin, we estimate hy
 
 *Flow is basin area-normalized daily flow measured at the basin outlet; Energy is energy generation potential in MW-days based on site-specific, energy-optimizing plant parameters (a single Francis turbine, an optimal plant capacity of 1.5 cm/day, non-zero efficiencies ranging from 0.46 to 0.86, and no minimum environmental flow). Data Source: [Agência Nacional de Águas (ANA)](http://www.ana.gov.br/PortalSuporte/frmSelecaoEstacao.aspx)*
 
-We apply the percentage increases in flow estimated by the regression to the Alto Teles Pires case: in the wet season, a 1% (or 4%) increase in mean wet season flow is equivalent to 2.4% (9.6%) of the minimum power-generating flow rate, and 0.2% (0.9%) of the maximum power-generating flow rate. In the dry season, both 1% or 4% increases in mean flow represent an insignificant fraction of power-generating flow extremes.
+We apply the percentage increases in flow estimated by the regression to the Alto Teles Pires case: in the wet season, a 1% increase in mean wet season flow is equivalent to 2.4% of the minimum power-generating flow rate, and 0.2% of the maximum power-generating flow rate. In the dry season, a 1% increases in mean flow represents an insignificant fraction of power-generating flow extremes.
 
-These results are *not* causal, only statistical and exploratory, but for illustration: if our final analysis yielded similar results, then we might say extreme deforestation (e.g. the 90% increase in cumulative loss) would have negligible impact on peak energy generation, but possibly small (positive) impact on low flow energy generation. As with flow, it will be important to look at hydropower estimates across more than one basin, and move from asking statistical (association/correlation) questions to causal questions - and we plan to in future work!
+These results are *not* causal, only statistical and exploratory, but for illustration: if our final analysis yielded similar results, then we might say that even extreme deforestation would have negligible impact on peak energy generation, but possibly small (positive) impact on low flow energy generation. As with flow, it will be important to look at hydropower estimates across more than one basin, and move from asking statistical (association/correlation) questions to causal questions - and we plan to in future work!
 
 
 
 ## Next Steps
 
-Ongoing work includes exploration of hydroclimate variables over an extended four-state region, which includes between 150-200 additional flow gauges; refinement of hydropower modeling methods; inclusion of other land use type categorizations, such as pasture and cropland; and additional regression (and other statistical) analyses of the relationship between land use change and flow, hydropower, and ultimately - temperature, humidity, and rainfall characteristics meaningful to food and biofuel agriculture in the region.
+Ongoing work includes exploration of hydroclimate variables over an extended four-state region, which includes between 150-200 additional flow gauges; refinement of hydropower modeling methods; inclusion of other land use type categorizations, such as pasture and cropland; and additional regression (and other statistical) analyses of the relationship between land use change and flow, hydropower, and ultimately - hydroclimate characteristics meaningful to food and biofuel agriculture in the region.
 
 Where data availability reaches it's limit - particularity in the case of flow measurements, we plan to employ limited modeling techniques. For example, many basins, especially small ones, are not gauged in Brazil but may have more dramatic response to land use change. Therefore, using simple, data-validated flow prediction models, we can carry out an analysis similar to the one presented here, but on a much larger and more diverse set of basins.
 
-Lastly, we plan to move from an exploratory, statistical analysis of relationships between land, climate, and hydrologic variables to a causal analysis of the impact of land use change on flow and hyropower.
+Lastly, we plan to move from an exploratory, statistical analysis of relationships between land, climate, and hydrologic variables to a causal analysis of the impact of land use change on flow and hydropower.
 
 ****
 
@@ -162,6 +160,8 @@ Lastly, we plan to move from an exploratory, statistical analysis of relationshi
 This research is advised and co-authored by [Sally Thompson](http://www.ce.berkeley.edu/people/faculty/thompson) (Civil and Environmental Engineering, UC Berkeley) and [Avery Cohn](http://fletcher.tufts.edu/CIERP/People/bios/cohn) (Fletcher School, Tufts University), and was assisted by Thompson Ecoyhdrology Lab undergraduate researcher [Herman Wu](http://vcresearch.berkeley.edu/energy/cal-energy-corps-summer-2014-participants-work-Herman-Wu). 
 
 This work was made possible through the support of the [GFW Graduate Student Research Program](http://datalab.wri.org/gfwsrp), with special thanks to Dan Hammer, as well as support from the [UC Berkeley Philomathia Center](http://vcresearch.berkeley.edu/philomathiacenter/about) and [Energy Biosciences Institute](http://www.energybiosciencesinstitute.org/), NSF-GRFP, and the [UC Berkeley Cal Energy Corps Program](http://vcresearch.berkeley.edu/energy/welcome-cal-energy-corps).
+
+[^fn-ecosystem.footnote]: This research does not consider land use change impacts to river ecosystem health, which is an important but different issue, and one that has rightfully received a great deal of attention in other research.
 
 [^fn-WB.footnote]: For a summary of this process, see the Woods Hole Research Center's [discussion of deforestation and water feedbacks](http://www.whrc.org/ecosystem/amazon_water.html). There are other ways that vegetation change can impact flow, but at large scales, the mechanism is primarily ET. This simple water balance model ignores a great deal of complexity, but the formula is valid over sufficiently long period of time (so that short term water storage in soils can be neglected), where diversions or reservoirs do not significantly impact river flow, and where drainage to a groundwater aquifer is negligible.
 
