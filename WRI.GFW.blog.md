@@ -34,11 +34,11 @@ Rain that falls on a river basin leaves the basin in the form of river flow or e
 
 ## Water Data Science
 
-Getting to the point where we can ask questions of land use, hydrologic, and hydropower data together is not trivial. A substantial part of our research effort has focused on acquiring, processing, and synthesizing data from different sources. For river flow, the temporal and spatial units of analysis are variable and irregular, and data are often poor quality. Rainfall and especially ET data are available at a limited number of sites in Brazil, although new gridded products provide improved spatial resolution. Estimating hydropower generation potential can be similarly difficult because those estimates rely on measurements of flow. Land use data, in comparison, is relatively straightforward to obtain and analyze, but is only available over limited time periods, or at very course spatial resolution.
+Getting to the point where we can ask questions about land use, hydrologic, and hydropower data together is not trivial. A substantial part of our research effort has focused on acquiring, processing, and synthesizing data from different sources. For river flow, the temporal and spatial units of analysis are variable and irregular, and data are often poor quality. Rainfall and especially ET data are available at a limited number of sites in Brazil, although new gridded products provide improved spatial resolution. Estimating hydropower generation potential can be similarly difficult because those estimates rely on measurements of flow. Land use data, in comparison, is relatively straightforward to obtain and analyze, but is only available over limited time periods, or at very course spatial resolution.
 
 ### Case Study
 
-We look at an example river basin located in central Mato Grosso, Brazil: a 10,887 km^2^ headwater basin of the Alto Teles Pires River, a tributary to the Amazon River. Deforestation in this basin occurred prior to 2001, however minimal deforestation continued through 2012, and transitions from pasture to cropland continue today in this region.
+We look at an example river basin located in central Mato Grosso, Brazil: a 10,887 km^2 headwater basin of the Alto Teles Pires River, a tributary to the Amazon River. Deforestation in this basin occurred prior to 2001, however minimal deforestation occurred from 2001 to 2012, and transitions from pasture to cropland continue today.
 
 <img src="./WRI.GFW.blog_files/figure-html/unnamed-chunk-1.png" title="" alt="" style="display: block; margin: auto;" />
 
@@ -151,7 +151,7 @@ These results are *not* causal, only statistical and exploratory, but for illust
 
 Ongoing work includes exploration of hydroclimate variables over an extended four-state region, which includes between 150-200 additional flow gauges; refinement of hydropower modeling methods; inclusion of other land use type categorizations, such as pasture and cropland; and additional regression (and other statistical) analyses of the relationship between land use change and flow, hydropower, and ultimately - temperature, humidity, and rainfall characteristics meaningful to food and biofuel agriculture in the region.
 
-Where data availability reaches it's limit - particularity in the case of flow measurements, we plan to employ limited modeling techniques. For example, many basins, especially small ones, are not gauged in Brazil but may have more dramatic response to land use change. Therefore, using simple, data-validated flow prediction models, we can carry out an analysis similar to the one presented here, but on a much larger and more diverse set of basins.
+Where data availability reaches its limit - particularity in the case of flow measurements, we plan to employ limited modeling techniques. For example, many basins, especially small ones, are not gauged in Brazil but may have more dramatic response to land use change. Therefore, using simple, data-validated flow prediction models, we can carry out an analysis similar to the one presented here, but on a much larger and more diverse set of basins.
 
 Lastly, we plan to move from an exploratory, statistical analysis of relationships between land, climate, and hydrologic variables to a causal analysis of the impact of land use change on flow and hyropower.
 
