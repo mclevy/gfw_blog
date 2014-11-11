@@ -155,7 +155,7 @@ In a very standard exploratory capacity, we perform a regression analysis for 72
 
 We regress a set flow statistics (minimum, maximum, mean, median, extremes and deviations) on deforestation and rainfall statistics assumed to be determinants of flow according to hydrologic theory, as well as determined by [model selction criteria](http://en.wikipedia.org/wiki/Model_selection) to be statistically meaningful predictors of flow. Formally, the regression model is:[^fn-model.footnote]
 
-$$ log(Flow_{it}) \sim \alpha_i + \delta_t + \beta_1 log(Forest \; Loss_{it}) + \beta_2 log(Cumulative \; Forest \; Loss_{it}) + \beta_3 log(Cumulative \; Rain_{it}) + \beta_4 Time_{it}$$
+$$log(Flow_{it}) \sim \alpha_i + \delta_t + \beta_1 log(Forest \; Loss_{it}) + \beta_2 log(Cumulative \; Forest \; Loss_{it}) + \beta_3 log(Cumulative \; Rain_{it}) + \beta_4 Time_{t} + \epsilon_{it}$$
 
 ![](eqn.png)
 
