@@ -56,7 +56,7 @@ We present preliminary results from an investigation of this land-water-energy n
 
 Our research asks: **has land use change, such as deforestation, measurably impacted regional water cycles, and could it impact water-cycle-dependent energy and agricultural production now and in the future?**
 
-We generate a novel data set that combines forest change observations, rainfall and streamflow records, and hydropower generation estimates in river basins of Mato Grosso, Brazil. We then present results from a preliminary analysis of the relationships between land use change, flow, and hydropower, which suggest that even extreme deforestation may have only a small impact on small hydropower energy generation in the study region.[^fn-ecosystem.footnote]
+We generate a novel data set that combines forest change observations, rainfall and streamflow records, and hydropower generation estimates in river basins of Mato Grosso, Brazil. We then present results from a preliminary analysis of the relationships between land use change, flow, and hydropower, which suggest that even extreme deforestation may have only a minimal impact on small hydropower energy generation in the study region.[^fn-ecosystem.footnote]
 
 ## Land Use Change and the Hydroclimate
 

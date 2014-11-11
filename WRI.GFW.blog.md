@@ -14,7 +14,7 @@ We present preliminary results from an investigation of this land-water-energy n
 
 Our research asks: **has land use change, such as deforestation, measurably impacted regional water cycles, and could it impact water-cycle-dependent energy and agricultural production now and in the future?**
 
-We generate a novel data set that combines forest change observations, rainfall and streamflow records, and hydropower generation estimates in river basins of Mato Grosso, Brazil. We then present results from a preliminary analysis of the relationships between land use change, flow, and hydropower, which suggest that even extreme deforestation may have only a small impact on small hydropower energy generation in the study region.[^fn-ecosystem.footnote]
+We generate a novel data set that combines forest change observations, rainfall and streamflow records, and hydropower generation estimates in river basins of Mato Grosso, Brazil. We then present results from a preliminary analysis of the relationships between land use change, flow, and hydropower, which suggest that even extreme deforestation may have only a minimal impact on small hydropower energy generation in the study region.[^fn-ecosystem.footnote]
 
 ## Land Use Change and the Hydroclimate
 
@@ -58,7 +58,7 @@ Based on theory, modeling, and field-level studies, we expect to see a *decrease
 
 **Wet Season**
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Tue Nov 11 14:03:33 2014 -->
+<!-- Tue Nov 11 14:14:38 2014 -->
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> Minimum </TH> <TH> 1st Quantile </TH> <TH> Median </TH> <TH> Mean </TH> <TH> 3rd Quantile </TH> <TH> Maximum </TH> <TH> Standard Deviation </TH>  </TR>
   <TR> <TD align="right"> 1974-1984 </TD> <TD align="right"> 2.97 </TD> <TD align="right"> 7.26 </TD> <TD align="right"> 10.50 </TD> <TD align="right"> 11.40 </TD> <TD align="right"> 14.70 </TD> <TD align="right"> 26.20 </TD> <TD align="right"> 5.52 </TD> </TR>
@@ -67,7 +67,7 @@ Based on theory, modeling, and field-level studies, we expect to see a *decrease
 
 **Dry Season**
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Tue Nov 11 14:03:33 2014 -->
+<!-- Tue Nov 11 14:14:38 2014 -->
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> Minimum </TH> <TH> 1st Quantile </TH> <TH> Median </TH> <TH> Mean </TH> <TH> 3rd Quantile </TH> <TH> Maximum </TH> <TH> Standard Deviation </TH>  </TR>
   <TR> <TD align="right"> 1974-1984 </TD> <TD align="right"> 1.02 </TD> <TD align="right"> 1.52 </TD> <TD align="right"> 2.10 </TD> <TD align="right"> 2.30 </TD> <TD align="right"> 2.76 </TD> <TD align="right"> 5.36 </TD> <TD align="right"> 0.98 </TD> </TR>
@@ -103,7 +103,7 @@ Forest loss (obtained using the [GFW API](http://datalab.wri.org/using-the-gfw-a
 The table below shows results for the model specification wherein $Flow_{it}$ is mean (monthly) flow.
 
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Tue Nov 11 14:03:35 2014 -->
+<!-- Tue Nov 11 14:14:40 2014 -->
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> Estimate </TH> <TH> Std. Error </TH> <TH> t value </TH> <TH> Pr(&gt;|t|) </TH>  </TR>
   <TR> <TD align="right"> log(loss) </TD> <TD align="right"> 0.0010 </TD> <TD align="right"> 0.0112 </TD> <TD align="right"> 0.09 </TD> <TD align="right"> 0.9313 </TD> </TR>
