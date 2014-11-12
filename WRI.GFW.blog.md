@@ -34,7 +34,7 @@ Rain that falls on a river basin leaves the basin in the form of river flow or e
 
 ## Water Data Science
 
-Getting to the point where we can ask questions of land use, hydrologic, and hydropower data together is not trivial. A substantial part of our research effort has focused on acquiring, processing, and synthesizing data from different sources. For river flow, the temporal and spatial units of analysis are variable and irregular, and data are often poor quality. Rainfall and especially ET data are available at a limited number of sites in Brazil, although new gridded products provide improved spatial resolution. Estimating hydropower generation potential can be similarly difficult because those estimates rely on measurements of flow. Land use data, in comparison, is relatively straightforward to obtain and analyze, but is only available over limited time periods, or at very course spatial resolution.
+Getting to the point where we can ask questions about land use, hydrologic, and hydropower data together is not trivial. A substantial part of our research effort has focused on acquiring, processing, and synthesizing data from different sources. For river flow, the temporal and spatial units of analysis are variable and irregular, and data are often poor quality. Rainfall and especially ET data are available at a limited number of sites in Brazil, although new gridded products provide improved spatial resolution. Estimating hydropower generation potential can be similarly difficult because those estimates rely on measurements of flow. Land use data, in comparison, is relatively straightforward to obtain and analyze, but is only available over limited time periods, or at very course spatial resolution.
 
 ### Case Study
 
